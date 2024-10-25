@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema de Gerenciamento de Usuários</title>
+    <link rel="stylesheet" href="/css/style.css"> <!-- Corrigido o caminho do CSS -->
+</head>
+
+<body>
+    <h2>Sistema de Gerenciamento de Usuários</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Idade</th>
+            <th>Excluir</th>
+        </tr>
+        <% data.forEach(element => { %>
+        <tr>
+            <td>
+                <%= element.userUniqueId %>
+            </td>
+            <td><%= element.userName %></td>
+            <td><%= element.userEmail %></td>
+            <td><%= element.userAge %></td>
+            <td>
+                <form action="/delete" method="post">
+                    <input type="text" style="display: none" name="userUniqueId" value="<%= element.userUniqueId %>" />
+                    <button type="submit">Deletar</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+    </table>
+
+    <h2>Adicionar Usuário</h2>
+
+    <form action="/" method="post">
+        <input type="text" placeholder="Id exclusivo" name="userUniqueId" />
+        <input type="text" placeholder="Nome" name="userName" />
+        <input type="text" placeholder="Email" name="userEmail" />
+        <input type="text" placeholder="Idade" name="userAge" />
+        <button type="submit">Adicionar</button>
+    </form>
+
+    <h2>Atualizar usuário</h2>
+
+    <form action="/update" method="post">
+        <input type="text" placeholder="Id exclusivo" name="userUniqueId">
+        <input type="text" placeholder="Nome" name="userName">
+        <input type="text" placeholder="Email" name="userEmail">
+        <input type="text" placeholder="Idade" name="userAge">
+        <button type="submit">Atualizar</button>
+    </form>
+</body>
+</html>
